@@ -245,11 +245,13 @@ def setup():
     print(BLUE + "Creation des dossiers et fichiers necessaires au bon fonctionnement")
     if os.name == "nt":
         dirname = "files"
-        os.mkdir(dirname)
+        if not os.path.isdir(dirname):
+            os.mkdir(dirname)
         os.system("attrib +h " + dirname)
     else:
         dirname = ".files"
-        os.mkdir(dirname)
+        if not os.path.isdir(dirname):
+            os.mkdir(dirname)
     
     formated = code.replace("FILES", dirname)
     with open("ImageHider.py", "w+") as f:
